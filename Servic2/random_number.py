@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import random
 
 
@@ -8,7 +8,9 @@ app = Flask(__name__)
 @app.route("/", methods=['GET'])
 def home():
     if request.method == "GET":
-        return random.randint(0, 100000000)
+        r = str(random.randint(0, 100000000))
+        return r
+    return "<p>Hello, world!!!</p>"
 
 
 if __name__ == "__main__":

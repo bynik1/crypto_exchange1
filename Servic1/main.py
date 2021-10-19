@@ -55,8 +55,8 @@ def index():
 @app.route('/home', methods=['POST', 'GET'])
 def home():
     if request.method == "GET":
-        random_price = requests.get('http://192.168.0.8:8777/')
-        print(random_price)
+        course = requests.get('http://192.168.0.8:8777/').text
+        print(course)
     return render_template("home.html")
 
 
