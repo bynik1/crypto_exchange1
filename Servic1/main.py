@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, flash, url_for
+import requests
 import sqlite3
 
 
@@ -34,27 +35,29 @@ def create_user():
             flash('Вы зарегистрирвались', category='success')
             return redirect('/user')
         else:
+            print('Такой логин уже занят, зарегестрируйтесь или авторизуйтесь')
             flash("Ошибка в отправке", category='error')
             return render_template("create-user.html")
     else:
         return render_template("create-user.html")
 
 
-@app.route('/profile/<path:user>')
+@app.route('/profile')
 def profile():
     return render_template("profile.html")
 
 
 @app.route('/')
-@app.route('/home')
 def index():
     return render_template("index.html")
 
 
-#@app.route('/user/<int:id>')
-#def rega(id):
-    #userpass = Userpass.query.get(id)
-    #return render_template("homeid.html", userpass=userpass)
+@app.route('/home', methods=['POST', 'GET'])
+def home():
+    if request.method == "GET":
+        random_price = requests.get('http://192.168.0.8:8777/')
+        print(random_price)
+    return render_template("home.html")
 
 
 @app.route('/user', methods=['POST', 'GET'])
@@ -66,11 +69,12 @@ def about():
         #берём столбцы login, password из таблице users, если  login= ввёденому значения в поле логин на сайте и password = ввёденому значения в поле пароль на сайте
         sql.execute(f"SELECT login, password FROM users WHERE login = '{user}' and password ='{password}'")
         # если такого логина нет отправляем на регестрацию или предлагаем ввести снова его дальше проверяем пароль
-        if sql.fetchall() is None:
+        if sql.fetchone() is None:
             return render_template("user.html")
         else:
-            user_login = request.form['user']
-            return redirect(url_for('index'))
+            user = request.form['user']
+            print(user)
+            return redirect('/profile')
     else:
         return render_template("user.html")
 
