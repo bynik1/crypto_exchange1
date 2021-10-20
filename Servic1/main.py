@@ -75,18 +75,20 @@ def about():
         else:
             user = request.form['user']
             print(user)
-            return redirect('/personal-cabinet')
+            return redirect('/personal-cabinet?url=127.0.0.1:8777')
     else:
         return render_template("user.html")
 
 
 @app.route('/personal-cabinet', methods=['POST', 'GET'])
 def PersonalCabinet():
-    #if request.method == "GET":
-        #course = requests.get('http://192.168.0.8:8777/').text
-
-        #print(course)
-    return render_template("personal-cabinet.html")
+    if request.method == "GET":
+        url = request.args.get('url')
+        url = 'http://' + url
+        #course = requests.get('http://127.0.0.1:8777/').text
+        course = requests.get(url).text
+        print(course)
+    return render_template("personal-cabinet.html", course=course)
 
 
 if __name__ == "__main__":
