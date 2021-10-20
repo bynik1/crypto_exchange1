@@ -14,7 +14,10 @@ sql = db.cursor()
 sql.execute("""CREATE TABLE IF NOT EXISTS users(
     login TEXT,
     password TEXT,
-    cash BIGINT
+    USD BIGINT,
+    КабачокCoin BIGINT,
+    BTC BIGINT,
+    ETH, BIGINT
 )""")
 #Сохранения наших изменений в нашей базе данных, обязательно всегда!!!!
 db.commit()
@@ -31,7 +34,7 @@ def create_user():
         # если такого логина нет в таблице
         if sql.fetchone() is None:
             # добавляем в таблицу в первую колонку переменные user_login, user_password и начальный balance
-            sql.execute(f'INSERT INTO users VALUES (?, ?, ?)', (user, password, 100000000))
+            sql.execute(f'INSERT INTO users VALUES (?, ?, ?, ?, ?, ?)', (user, password, 100000000, 0, 0, 0))
             db.commit()
             flash('Вы зарегистрирвались', category='success')
             return redirect('/user')
