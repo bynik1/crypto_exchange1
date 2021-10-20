@@ -13,7 +13,8 @@ sql = db.cursor()
 #создание базы данных users объявления её столбцов и опредления информации, которая будет содерджаться в них
 sql.execute("""CREATE TABLE IF NOT EXISTS users(
     login TEXT,
-    password TEXT
+    password TEXT,
+    cash BIGINT
 )""")
 #Сохранения наших изменений в нашей базе данных, обязательно всегда!!!!
 db.commit()
@@ -30,7 +31,7 @@ def create_user():
         # если такого логина нет в таблице
         if sql.fetchone() is None:
             # добавляем в таблицу в первую колонку переменные user_login, user_password и начальный balance
-            sql.execute(f'INSERT INTO users VALUES (?, ?)', (user, password))
+            sql.execute(f'INSERT INTO users VALUES (?, ?, ?)', (user, password, 100000000))
             db.commit()
             flash('Вы зарегистрирвались', category='success')
             return redirect('/user')
@@ -74,14 +75,18 @@ def about():
         else:
             user = request.form['user']
             print(user)
-            return redirect('/profile')
+            return redirect('/personal-cabinet')
     else:
         return render_template("user.html")
 
 
-@app.route('/trys')
-def trys():
-    return render_template("try.html")
+@app.route('/personal-cabinet', methods=['POST', 'GET'])
+def PersonalCabinet():
+    #if request.method == "GET":
+        #course = requests.get('http://192.168.0.8:8777/').text
+
+        #print(course)
+    return render_template("personal-cabinet.html")
 
 
 if __name__ == "__main__":

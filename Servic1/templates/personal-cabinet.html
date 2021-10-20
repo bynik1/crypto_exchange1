@@ -1,22 +1,18 @@
-{% extends 'base.html' %}
+{% extends 'basehome.html' %}
 
 {% block title %}Криптообменник Кабачок{% endblock %}
 
 {% block body %}
-
-<div class="container-fluid">
-
-  <div class="container row">
-    
-    <canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="1043" height="440" style="display: block; width: 1043px; height: 440px;"></canvas>
-
-    <h2>Криптаволюта</h2>
+<h2>Криптаволюта</h2>
     <div class="container table-responsive">
       <table class="table table-striped table-sm">
-        <thead>
+          <p>Ваш баланс USD: {{r}}</p>
           <tr>
             <th scope="col">Название</th>
             <th scope="col">Цена(USD)</th>
+            <th scope="col">Колиечство</th>
+            <th scope="col">Купить</th>
+            <th scope="col">Продать</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -24,6 +20,9 @@
           <a class="me-3 py-2 text-dark text-decoration-none">
             <tr>
               <td>КабачокCoin</td>
+              <td></td>
+              <td></td>
+              <td></td>
               <td></td>
               <td>
                 <form method="GET">
@@ -35,6 +34,9 @@
           <a class="me-3 py-2 text-dark text-decoration-none">
             <tr>
               <td>BTC</td>
+              <td></td>
+              <td></td>
+              <td></td>
               <form method="GET">
                 <td>{{course}}</td>
                 <td><button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Узнать цену</button></td>
@@ -44,6 +46,9 @@
           <a class="me-3 py-2 text-dark text-decoration-none">
             <tr>
               <td>ETH</td>
+              <td></td>
+              <td></td>
+              <td></td>
               <td></td>
               <td>
                 <form method="GET">
@@ -55,12 +60,5 @@
         </tbody>
       </table>
     </div>
-  </div>
-</div>
-    
-    
-    
-      
-    
 
 {% endblock %}
