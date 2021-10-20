@@ -9,11 +9,10 @@
           <p>Ваш баланс USD: {{r}}</p>
           <tr>
             <th scope="col">Название</th>
+            <th scope="col">КолиечствоЦена(USD)</th>
             <th scope="col">Цена(USD)</th>
-            <th scope="col">Колиечство</th>
-            <th scope="col">Купить</th>
-            <th scope="col">Продать</th>
-            <th scope="col"></th>
+            <th scope="col">Обменять</th>
+            <th scope="col">Узнать цену</th>
           </tr>
         </thead>
         
@@ -23,8 +22,7 @@
               <td>КабачокCoin</td>
               <td></td>
               <td></td>
-              <td></td>
-              <td></td>
+              <td>{{course}}</td>
               <td>
                 <form method="GET">
                   <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Узнать цену</button>
@@ -36,8 +34,7 @@
             <tr>
               <td>BTC</td>
               <td></td>
-              <td></td>
-              <td></td>
+              <td>{{course}}</td>
               <form method="GET">
                 <td>{{course}}</td>
                 <td><button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Узнать цену</button></td>
@@ -49,8 +46,7 @@
               <td>ETH</td>
               <td></td>
               <td></td>
-              <td></td>
-              <td></td>
+              <td>{{course}}</td>
               <td>
                 <form method="GET">
                   <button class="w-100 btn btn-lg btn-primary mt-3" type="submit" href="/personal-cabinet?url=127.0.0.1:8777">Узнать цену</button>

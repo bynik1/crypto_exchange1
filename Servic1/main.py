@@ -86,12 +86,17 @@ def about():
 @app.route('/personal-cabinet', methods=['POST', 'GET'])
 def PersonalCabinet():
     if request.method == "GET":
-        url = request.args.get('url')
-        url = 'http://' + url
-        #course = requests.get('http://127.0.0.1:8777/').text
-        course = requests.get(url).text
+        #url = request.args.get('url')
+        #url = 'http://' + url
+        course = requests.get('http://127.0.0.1:8777/').text
+        #course = requests.get(url).text
         print(course)
     return render_template("personal-cabinet.html", course=course)
+
+
+@app.route('/КабачокCoin',  methods=['POST', 'GET'])
+def КабачокCoin():
+    pass
 
 
 if __name__ == "__main__":
