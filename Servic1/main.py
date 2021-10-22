@@ -69,7 +69,6 @@ def about():
     if request.method == "POST":
         user = request.form['user']
         password = request.form['password']
-        print(user, password)
         #берём столбцы login, password из таблице users, если  login= ввёденому значения в поле логин на сайте и password = ввёденому значения в поле пароль на сайте
         sql.execute(f"SELECT login, password FROM users WHERE login = '{user}' and password ='{password}'")
         # если такого логина нет отправляем на регестрацию или предлагаем ввести снова его дальше проверяем пароль
@@ -77,26 +76,47 @@ def about():
             return render_template("user.html")
         else:
             user = request.form['user']
-            print(user)
-            return redirect('/personal-cabinet?url=127.0.0.1:8777')
+            return redirect('/personal-cabinet')
     else:
         return render_template("user.html")
 
 
 @app.route('/personal-cabinet', methods=['POST', 'GET'])
 def PersonalCabinet():
-    if request.method == "GET":
-        #url = request.args.get('url')
-        #url = 'http://' + url
-        course = requests.get('http://127.0.0.1:8777/').text
-        #course = requests.get(url).text
-        print(course)
-    return render_template("personal-cabinet.html", course=course)
+    return render_template("personal-cabinet.html")
 
 
 @app.route('/КабачокCoin',  methods=['POST', 'GET'])
 def КабачокCoin():
-    pass
+    if request.method == "GET":
+        url = request.args.get('url')
+        url = 'http://' + url
+        #cource = requests.get('http://127.0.0.1:8777/').text
+        cource = requests.get(url).text
+        print(cource)
+    return render_template("КабачокCoin.html", cource=cource)
+
+
+@app.route('/BTC',  methods=['POST', 'GET'])
+def BTC():
+    if request.method == "GET":
+        url = request.args.get('url')
+        url = 'http://' + url
+        #cource = requests.get('http://127.0.0.1:8777/').text
+        cource = requests.get(url).text
+        print(cource)
+    return render_template("BTC.html", cource=cource)
+
+
+@app.route('/ETH',  methods=['POST', 'GET'])
+def ETH():
+    if request.method == "GET":
+        url = request.args.get('url')
+        url = 'http://' + url
+        #cource = requests.get('http://127.0.0.1:8777/').text
+        cource = requests.get(url).text
+        print(cource)
+    return render_template("ETH.html", cource=cource)
 
 
 if __name__ == "__main__":
