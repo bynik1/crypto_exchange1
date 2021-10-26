@@ -76,13 +76,13 @@ def about():
             return render_template("user.html")
         else:
             user = request.form['user']
-            return redirect('/personal-cabinet')
+            return redirect(url_for('PersonalCabinet', user=user))
     else:
         return render_template("user.html")
 
 
-@app.route('/personal-cabinet', methods=['POST', 'GET'])
-def PersonalCabinet():
+@app.route('/personal-cabinet/<path:user>', methods=['POST', 'GET'])
+def PersonalCabinet(user):
     return render_template("personal-cabinet.html")
 
 
